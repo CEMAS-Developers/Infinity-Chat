@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { db, firebase } from "../config/firebase";
-import Message from './Message';
+import Message from "./Message";
 
 const Channel = ({ user = null }) => {
   //console.log(user);
@@ -8,113 +8,101 @@ const Channel = ({ user = null }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const query = db.collection('messages')
-    .orderBy('createdAt')
-    .limit(100);
+    const query = db.collection("messages").orderBy("createdAt").limit(100);
 
-const unsubscribe = query.onSnapshot(querySnapshot => {
-    //Obtiene todos los mensajes desde la bd con su ID.
-    const data = querySnapshot.docs.map(doc => ({
+    const unsubscribe = query.onSnapshot((querySnapshot) => {
+      //Obtiene todos los mensajes desde la bd con su ID.
+      const data = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
-    }));
-    // Actualizo los mensjaes obtenidos desde la bd. 
-    setMessages(data);
+      }));
+      // Actualizo los mensjaes obtenidos desde la bd.
+      setMessages(data);
+    });
+    //CleanUp
+    return unsubscribe;
+  }, []);
 
-});
-//CleanUp
-return unsubscribe;
-
-  }, [])
-
-  const { uid, displayName, photoURL} = user;
-  const [ newMessage, setNewMessage ]= useState('');
-  const handleMessageOnChange = (e) =>{
+  const { uid, displayName, photoURL } = user;
+  const [newMessage, setNewMessage] = useState("");
+  const handleMessageOnChange = (e) => {
     e.preventDefault();
     setNewMessage(e.target.value);
-  }
+  };
 
-  const messagesRef = db.collection('messages');
+  const messagesRef = db.collection("messages");
 
-  const handleOnSubmit = e =>{
+  const handleOnSubmit = (e) => {
     e.preventDefault();
 
-        const trimmedMessage = newMessage.trim(); 
-        if (trimmedMessage) {
-          messagesRef.add({
-            text: trimmedMessage,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            uid,
-            displayName,
-            photoURL,
-          });
-          setNewMessage('');
-        }
-      };
-  
-
-  
-
-const inputRef = useRef();
-useEffect(() => {
-    if (inputRef.current){
-        inputRef.current.focus();
+    const trimmedMessage = newMessage.trim();
+    if (trimmedMessage) {
+      messagesRef.add({
+        text: trimmedMessage,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        displayName,
+        photoURL,
+      });
+      setNewMessage("");
     }
-}, [inputRef]);
+  };
 
+  const inputRef = useRef();
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
-    return(
-        <>
-            <ul>
-                {messages.map(message => (
-                    <li key={message.id}>
-                        <Message {...message} />
-                    </li>
-                ))}
-            </ul>
-
-            <form
-                onSubmit={handleOnSubmit}>
-                    <input
-                    ref={inputRef}
-                    type="text"
-                    value={newMessage}
-                    onChange={handleMessageOnChange}
-                    placeholder= "Escribe tu mensaje aqui..."
-                    />
-                    <button 
-                    type="submit"
-                    disabled={!newMessage}
-                    >
-                        Send
-                    </button>
-                </form>
-            </>
-    );  
+  return (
+    <>
+      <ul>
+        {messages.map((message) => (
+          <li key={message.id}>
+            <Message {...message} />
+          </li>
+        ))}
+      </ul>
+      u
+      <form onSubmit={handleOnSubmit}>
+        <input
+          ref={inputRef}
+          type="text"
+          value={newMessage}
+          onChange={handleMessageOnChange}
+          placeholder="Escribe tu mensaje aqui..."
+        />
+        <button type="submit" disabled={!newMessage}>
+          Send
+        </button>
+      </form>
+    </>
+  );
 };
 
 export default Channel;
 
-  //const query = db.collection("messages").orderBy("createdAt").limit(100);
+//const query = db.collection("messages").orderBy("createdAt").limit(100);
 
-    //const unsubscribe = query.onSnapshot((querySnapshot) => {
- //     const data = querySnapshot.docs.map((doc) => ({
- //       ...doc.data(),
- //       id: doc.id,
- //     }));
+//const unsubscribe = query.onSnapshot((querySnapshot) => {
+//     const data = querySnapshot.docs.map((doc) => ({
+//       ...doc.data(),
+//       id: doc.id,
+//     }));
 //
- //     setMessages(data);
- //   });
+//     setMessages(data);
+//   });
 //
- //   return unsubscribe;
- // }, []);
+//   return unsubscribe;
+// }, []);
 //
- // return (
- //   <ul>
- //     {messages.map((message) => (
- //       <li key={message.id}>{message.text}</li>
- //     ))}
- //   </ul>
- // );
+// return (
+//   <ul>
+//     {messages.map((message) => (
+//       <li key={message.id}>{message.text}</li>
+//     ))}
+//   </ul>
+// );
 //};
 //
