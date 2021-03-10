@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { db, firebase } from "../config/firebase";
 import Message from "./Message";
+import Picker from "emoji-picker-react";
 
 const Channel = ({ user = null }) => {
   const [messages, setMessages] = useState([]);
@@ -70,10 +71,16 @@ const Channel = ({ user = null }) => {
           value={newMessage}
           onChange={handleMessageOnChange}
           placeholder="Escribe tu mensaje aqui..."
-          />
-        <button>
+        />
+        1. {/* Al hacer click en el Btn 😀  se abre <Picker /> */}
+        <Picker />
+        {/* <button>
           😀
-        </button>
+        </button> */}
+
+        2. {/* Al hacer click en un emopji se agrega al <input /> */}
+        
+        
         <button type="submit" disabled={!newMessage}>
           ➡️
         </button>
