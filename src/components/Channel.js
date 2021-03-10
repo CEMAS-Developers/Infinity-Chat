@@ -3,8 +3,6 @@ import { db, firebase } from "../config/firebase";
 import Message from "./Message";
 
 const Channel = ({ user = null }) => {
-  //console.log(user);
-
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -64,7 +62,7 @@ const Channel = ({ user = null }) => {
           </li>
         ))}
       </ul>
-      u
+      
       <form onSubmit={handleOnSubmit}>
         <input
           ref={inputRef}
@@ -72,9 +70,12 @@ const Channel = ({ user = null }) => {
           value={newMessage}
           onChange={handleMessageOnChange}
           placeholder="Escribe tu mensaje aqui..."
-        />
+          />
+        <button>
+          😀
+        </button>
         <button type="submit" disabled={!newMessage}>
-          Send
+          ➡️
         </button>
       </form>
     </>
@@ -82,27 +83,3 @@ const Channel = ({ user = null }) => {
 };
 
 export default Channel;
-
-//const query = db.collection("messages").orderBy("createdAt").limit(100);
-
-//const unsubscribe = query.onSnapshot((querySnapshot) => {
-//     const data = querySnapshot.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id,
-//     }));
-//
-//     setMessages(data);
-//   });
-//
-//   return unsubscribe;
-// }, []);
-//
-// return (
-//   <ul>
-//     {messages.map((message) => (
-//       <li key={message.id}>{message.text}</li>
-//     ))}
-//   </ul>
-// );
-//};
-//
