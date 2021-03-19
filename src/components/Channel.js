@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { db, firebase } from "../config/firebase";
 import Message from "./Message";
-import Picker from "emoji-picker-react";
+// import Picker from "emoji-picker-react";
 
 const Channel = ({ user = null }) => {
   const [messages, setMessages] = useState([]);
@@ -54,20 +54,20 @@ const Channel = ({ user = null }) => {
     }
   }, [inputRef]);
 
-  const [chosenEmoji, setChosenEmoji] = useState(null);
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
+  // const [chosenEmoji, setChosenEmoji] = useState(null);
+  // const onEmojiClick = (event, emojiObject) => {
+  //   setChosenEmoji(emojiObject);
+  // };
 
   return (
     <>
-      <ul>
+      {/* <ul>
         {messages.map((message) => (
           <li key={message.id}>
             <Message {...message} />
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <form onSubmit={handleOnSubmit}>
         <input
@@ -82,10 +82,10 @@ const Channel = ({ user = null }) => {
         {/* 1. Al hacer click en el Btn 😀  se abre <Picker /> */}
         {/* 2. Al hacer click en un emopji se agrega al <input /> */}
           
-        <span>{chosenEmoji.emoji}</span>
+        {/* <span>{chosenEmoji.emoji}</span>
 
         <button>😀</button>
-        <Picker onEmojiClick={onEmojiClick} />
+        <Picker onEmojiClick={onEmojiClick} /> */}
         
         <button type="submit" disabled={!newMessage}>
           Enviar

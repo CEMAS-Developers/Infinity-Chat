@@ -2,6 +2,7 @@ import { Button, Channel } from "./components/";
 import { signInWithGoogle, signOut } from "./login";
 import { useAuthState } from "./hooks";
 import { firebase } from "./config/firebase";
+import Picker from "emoji-picker-react";
 
 function App() {
   const { user, itializing } = useAuthState(firebase.auth());
@@ -22,6 +23,7 @@ function App() {
           <Button onClick={signOut}> Logout</Button>
           <p> Bienvenidos al CHAT!</p>
           <Channel user={user} />
+          <Picker />
         </>
       ) : (
         <Button onClick={signInWithGoogle}> Sign in with Google </Button>
