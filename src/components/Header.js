@@ -19,7 +19,7 @@ const Header = () => {
     return (
       <header className="menu">
         <Logo />
-        <h1>Infinity Chat</h1>
+        <h1 className="encabezado">Infinity Chat</h1>
         <div className="invisible-btn"></div>
       </header>
     );
