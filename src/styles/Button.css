@@ -12,20 +12,43 @@
     padding: 5px 15px;
   }
   
-.boton:hover{
-    box-shadow: 0px -5px 1.5px rgba(0, 0, 0, 0.603) inset;
-  }
   
- /*--------------------- Inicio de Sección - Botón ---------------------------*/
+  /*--------------------- Inicio de Sección - Botón ---------------------------*/
   
-main button{
-    background: rgba(30, 102, 197, 0.658);
+.login button{
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.5vw 2vw;
+  box-shadow: 0vw -0.3vw #1f1f1f71 inset;
+  background: rgba(30, 102, 197, 0.658);
+  font-size: calc(1vw + 1vh);
+  transition: 75ms;
 }
 
+.login button:hover{
+  box-shadow: 0px -0.2vw #14141494 inset;
+  font-size: calc(1.5vw + 1.5vh);
+}
+
+.login button:active{
+  box-shadow: 0px -0.07vw 1.5px #141414 inset;
+  font-size: calc(2vw + 2vh);
+}
  /*------------------------ Salir de Sección - Botón ----------------------------*/
   
 header button{
     background: rgba(255, 79, 48, 0.788);
     margin-right: 2%;
+}
+
+/*------------------------------------------- Media Queries ------------------------------------------------*/
+
+@media screen and (max-width: 800px) {
+  .login button{
+    border-radius: 1vw;
+    padding: 1vw 2vw;
+    box-shadow: 0vw -.6vw #1f1f1f71 inset;
+    font-size: calc(1.5vw + 1.5vh) !important;
+  }
 }
 

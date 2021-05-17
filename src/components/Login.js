@@ -7,10 +7,7 @@ const Login = () => {
     <main>
       <div className="login">
         <h2>¡Bienvenidos!</h2>
-        <img
-          src="https://blog.cpanel.com/wp-content/uploads/2019/08/user-01.png"
-          alt=""
-        ></img>
+        <img src="https://blog.cpanel.com/wp-content/uploads/2019/08/user-01.png"/>
         <Button onClick={signInWithGoogle}>Iniciar Sesión</Button>
       </div>
     </main>
